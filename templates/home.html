@@ -1,0 +1,16 @@
+{%extends "layout.html"%}
+{%block content%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-m-12" style="position: relative;text-align:center">
+                <form action="" method="POST">
+                    <select name="method">
+                        <option value="usb">USB</option>
+                        <option value="wifi">WIFI</option>
+                    </select>
+                    <h1><input type="submit" value="Connect to device"></h1>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock%}
