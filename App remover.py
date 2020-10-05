@@ -3,19 +3,39 @@ from ppadb.client import Client                         # os for communicating t
 
 adb = Client(host="127.0.0.1",port=5037)
 app=Flask(__name__)                                     #name to app obj
+
+devices = adb.devices()
+device = devices[0]
+
+
 @app.route("/" , methods=['POST','GET'])                #first line / represents the route dir 
 def home():                                             #definiton of "/" is home its is mandetery in this code 
     if request.method =='POST':
         
-        if len(list_devices()) != 0:
-           return ('device connected')
+        if len(devices) != 0:
+            device =  devices[0]
+            return render_template ("ModuleList.html")
         else:
             return ('device not connected try again  <a href="/">home</a> ')
     else:
         return render_template ("home.html")            #content of that page...
-def list_devices():
-    devices = adb.devices()
-    return devices
+
+@app.route("/disconnect" )   
+def disconnect():
+    device.disconnect()
+    return render_template ("home.html") 
+
+
+
+@app.route("/listAll" )
+def listAll():
+    list = (device.shell("pm list packages")).split() #packages are coming like package:name format
+    list1=[]  #for saving splited packages 
+    for i in range(0,len(list)):
+        list[i]=list[i].split(':')
+        list1.append(list[i][1])
+    return render_template("Listall.html",list1=list1,len=len(list))
+
     
         
 
