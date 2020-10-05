@@ -36,8 +36,14 @@ def listAll():
         list1.append(list[i][1])
     return render_template("Listall.html",list1=list1,len=len(list))
 
-    
-        
+# @app.route("/remove",methods=['POST','GET'])
+@app.route("/remove")
+def remove():
+    # rm=request.form.getlist('check')
+    # for i in rm:
+    #     print('pm uninstall --user 0 '+str(i))
+    # return ("these items <table>{%for i in rm%}<tr><td>{{i}}</td></tr>{%endfor%}</table> Uninstalled Go <a href='/listAll'>back</a> Or <a href='/'>Home</a>")
+    return('pm uninstall --user 0 ')
 
 
 if __name__ == "__main__":                              #check wether the ___name__ == __main__ conforming only devoloper can debug the code... if this command is not here anyone can access and debug the code..
