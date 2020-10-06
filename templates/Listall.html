@@ -2,32 +2,32 @@
 {%block content%}
 <div class="coantainer-fluid">
     <div class="row">
-        <div class="col-m-12">
-            <table class="table">
+       <div class="col-m-4"></div>
+       <div class="col-m-6" style="width:43%;align-content: center;margin-left: 27%;">
+        <table class="table">
+            <form action="/remove" method="POST">
                 <thead>
                     <tr>
-                        <th>Package Name,{{len}}nos </th>
+                        <th>Package Name,{{len}}nos</th>
                         <th>check to remove</th>
                     </tr>
                 </thead>
-                <form action="/remove" method="POST">
                 {%for i in list1%}
                     <tr>
-                        <td><a href="https://www.google.com/search?q={{i}}">{{i}}</a></td>
+                        <td><a href="https://duckduckgo.com/?q={{i}}" target="_blank">{{i}}</a></td>
                         <td><input type="checkbox" name="check" value="{{i}}"></td>
                     </tr>
                 {% endfor%}
-                    <tfoot>
-                        <tr>
-                            <th>
-                                <input type="submit" value="Remove Apps">
-                            </th>
-                        </tr>
-                    </tfoot>
-                </form>
-            </table>
-            
-        </div>
+                <tfoot>
+                    <tr>
+                        <th>
+                            <button type="submit">Remove apps</button>
+                        </th>
+                   </tr>
+                </tfoot>
+            </form>
+        </table>
+    </div>
     </div>
 
 </div>

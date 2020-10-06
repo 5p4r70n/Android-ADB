@@ -3,13 +3,34 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-m-12">
+        <div class="col-m-12" style="margin-left: 10%;margin-top: 3%;width: 14%;">
             <table>
+                <thead>
+                    <tr>
+                        <td>Action</td>
+                        <td>Option</td>
+                    </tr>
+                </thead>
                 <tr>
-                    <td><a href="/disconnect">Disconnect All</a></td>
-                    <td><a href="/listAll">List All apps</a></td>
+                    <form action="/listAll" method="POST">
+                        <td><button type="submit">List Apps</button></td>
+                        <td>
+                            <div>
+                                <input type="radio" id="all" name="appType" value="all" checked>
+                                <label for="all">All</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="system" name="appType" value="system">
+                                <label for="system">System Apps Only</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="user" name="appType" value="user">
+                                <label for="user">User Apps Only</label>
+                            </div>
+                        </td>
+                    </form>
                 </tr>
-            </table>            
+            </table>
         </div>
     </div>
 </div>
