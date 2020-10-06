@@ -14,5 +14,5 @@
 - Select apps you want to remove then press remove 
 
 
-#feedback appreciated 
+#feedbacks appreciated 
 - 
