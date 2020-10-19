@@ -1,11 +1,14 @@
 from flask import Flask,render_template,request,url_for #import flask library
 from ppadb.client import Client                         # os for communicating to device
+import os
+import time
 
 adb = Client(host="127.0.0.1",port=5037)
 app=Flask(__name__)                                     #name to app obj
 devices = adb.devices()
 device=devices[0]
-
+dir = os.getcwd()                                       # get present working Directry
+ts = time.time()                                        # get current time
 
 @app.route("/" , methods=['POST','GET'])                #first line / represents the route dir 
 def home():                                             #definiton of "/" is home its is mandetery in this code 
@@ -42,7 +45,11 @@ def remove():
     return ("these items Uninstalled GO <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")
 
 
-
+@app.route("/screenCap",methods=['POST','GET'])
+def screenCap():
+    device.shell("screencap /sdcard/screenshot.png")
+    device.pull("/sdcard/screenshot.png", str(dir)+"/data/"+str(ts)+".png")
+    return ("Screen Captured Goto DATA folder to view, <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")    
 
 
 
