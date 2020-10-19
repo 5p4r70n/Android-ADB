@@ -3,8 +3,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-m-12" style="margin-left: 10%;margin-top: 3%;width: 14%;">
-            <table>
+        <div class="col-m-12" style="margin-left: 10%;margin-top: 3%;width: 89%;">
+            <table class="table">
                 <thead>
                     <tr>
                         <td>Action</td>
@@ -29,6 +29,12 @@
                             </div>
                         </td>
                     </form>
+                </tr>
+                <tr>
+                    <td>Display Resolution and Density</td>
+                    <td>{%for i in screen%}
+                    {{i}} <br>
+                    {%endfor%} </td>
                 </tr>
             </table>
         </div>

@@ -12,7 +12,7 @@ def home():                                             #definiton of "/" is hom
     if request.method =='POST':
         devices = adb.devices() 
         if len(devices) != 0:
-            return render_template ("ModuleList.html")
+            return render_template ("ModuleList.html",screen= screen_size() )
         else:
             return ('device not connected try again  <a href="/">home</a> ')
     else:
@@ -40,6 +40,16 @@ def remove():
     for i in rm:
         device.shell('pm uninstall --user 0 '+str(i))  #this will uninstall apps
     return ("these items Uninstalled GO <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")
+
+
+
+
+
+
+def screen_size():
+    size=device.shell('wm size')
+    density =device.shell('wm density')
+    return size,density
 
 
 if __name__ == "__main__":#check wether the ___name__ == __main__ conforming only devoloper can debug the code... if this command is not here anyone can access and debug the code..
