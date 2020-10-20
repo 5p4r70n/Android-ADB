@@ -7,8 +7,7 @@ adb = Client(host="127.0.0.1",port=5037)
 app=Flask(__name__)                                     #name to app obj
 devices = adb.devices()
 device=devices[0]
-dir = os.getcwd()                                       # get present working Directry
-ts = time.time()                                        # get current time
+dir = os.getcwd()                                       # get present working Directry                                        # get current time
 
 @app.route("/" , methods=['POST','GET'])                #first line / represents the route dir 
 def home():                                             #definiton of "/" is home its is mandetery in this code 
@@ -47,9 +46,10 @@ def remove():
 
 @app.route("/screenCap",methods=['POST','GET'])
 def screenCap():
+    ts = time.strftime("%Y%m%d%H%M%S")
     device.shell("screencap /sdcard/screenshot.png")
     device.pull("/sdcard/screenshot.png", str(dir)+"/data/"+str(ts)+".png")
-    return ("Screen Captured Goto DATA folder to view, <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")    
+    return ("Screen Captured Goto DATA folder to view, <img src='../data/'"+ts+"'.png'>   <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")    
 
 
 
