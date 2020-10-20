@@ -2,13 +2,15 @@
 {%block content%}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-m-12" style="position: relative;text-align:center">
+            <div class="col-m-12" style="position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);">
                 <form action="/" method="POST">
-                    <select name="method">
-                        <option value="usb">USB</option>
-                        <!-- <option value="wifi">WIFI</option> -->
-                    </select>
-                    <h1><input type="submit" value="Connect to device"></h1>
+                    <center>
+                        <select name="method">
+                            <option value="usb">USB</option>
+                            <!-- <option value="wifi">WIFI</option> -->
+                        </select>
+                        <h1><input type="submit" value="Connect to device"></h1>
+                    </center>
                 </form>
             </div>
         </div>

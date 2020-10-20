@@ -25,13 +25,13 @@ def listAll():
 
     if request.method=='POST':
         x=request.form['appType'] # app filter comes here
-        cmd={"all" : "pm list packages","user" : "pm list packages -3","system":"pm list packages -s"} #hard coded commands each one selected via appType coming from request
+        cmd={"all" : "pm list packages","user" : "pm list packages -3","system":"pm list packages -s","disabled":"pm list packages -d","enabled":"pm list packages -e"} #hard coded commands each one selected via appType coming from request
         list = (device.shell(cmd[x])).split() #packages are coming like package:name format
         list1=[]  #for saving splited packages 
         for i in range(0,len(list)):
             list[i]=list[i].split(':')
             list1.append(list[i][1])
-        return render_template("Listall.html",list1=list1,len=len(list))
+        return render_template("Listall.html",list1=list1,len=len(list),head=x) 
 
     else:
         return render_template ("ModuleList.html")
@@ -48,8 +48,8 @@ def remove():
 def screenCap():
     ts = time.strftime("%Y%m%d%H%M%S")
     device.shell("screencap /sdcard/screenshot.png")
-    device.pull("/sdcard/screenshot.png", str(dir)+"/data/"+str(ts)+".png")
-    return ("Screen Captured Goto DATA folder to view, <img src='../data/'"+ts+"'.png'>   <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")    
+    device.pull("/sdcard/screenshot.png", str(dir)+"/static/"+str(ts)+".png")
+    return render_template ("Image.html",ts=ts)    
 
 
 
