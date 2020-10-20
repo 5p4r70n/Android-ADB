@@ -24,17 +24,12 @@ def home():                                             #definiton of "/" is hom
 def listAll():
 
     if request.method=='POST':
-        x=request.form['appType'] # app filter comes here
-        cmd={"all" : "pm list packages","user" : "pm list packages -3","system":"pm list packages -s","disabled":"pm list packages -d","enabled":"pm list packages -e"} #hard coded commands each one selected via appType coming from request
-        list = (device.shell(cmd[x])).split() #packages are coming like package:name format
-        list1=[]  #for saving splited packages 
-        for i in range(0,len(list)):
-            list[i]=list[i].split(':')
-            list1.append(list[i][1])
-        return render_template("Listall.html",list1=list1,len=len(list),head=x) 
+        return render_template("Listall.html",list1= appList()[0],len=len(list1),head=appList()[1]) 
 
     else:
         return render_template ("ModuleList.html")
+
+
 
 @app.route("/remove",methods=['POST','GET'])
 def remove():
@@ -42,6 +37,7 @@ def remove():
     for i in rm:
         device.shell('pm uninstall --user 0 '+str(i))  #this will uninstall apps
     return ("these items Uninstalled GO <a href='/listAll'>back</a> Or GO <a href='/'>Home</a>")
+
 
 
 @app.route("/screenCap",methods=['POST','GET'])
@@ -53,7 +49,20 @@ def screenCap():
 
 
 
-def screen_size():
+
+def appList():
+    x=request.form['appType'] # app filter comes here
+    cmd={"all" : "pm list packages","user" : "pm list packages -3","system":"pm list packages -s","disabled":"pm list packages -d","enabled":"pm list packages -e"} #hard coded commands each one selected via appType coming from request
+    list = (device.shell(cmd[x])).split() #packages are coming mixed with each other 
+    list1=[]  #for saving splited packages 
+    for i in range(0,len(list)):
+        list[i]=list[i].split(':')      #this will split with : for removing "package:" from name
+        list1.append(list[i][1])        # added to list array
+    return list1,x   
+
+
+
+def screen_size():   #function for get screen size of the device
     size=device.shell('wm size')
     density =device.shell('wm density')
     return size,density
