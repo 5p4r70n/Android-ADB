@@ -7,13 +7,13 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Action</td>
-                        <td>Option</td>
+                        <td><h3>Action</h3></td>
+                        <td><h3>Option</h3></td>
                     </tr>
                 </thead>
                 <tr>
                     <form action="/listAll" method="POST">
-                        <td><button type="submit">List Apps</button></td>
+                        <td><button type="submit">List Apps And uninstall</button></td>
                         <td>
                             <div>
                                 <input type="radio" id="all" name="appType" value="all" checked>
@@ -27,6 +27,13 @@
                                 <input type="radio" id="user" name="appType" value="user">
                                 <label for="user">User Apps Only</label>
                             </div>
+                        </td>
+                    </form>
+                </tr>
+                <tr>
+                    <form action="/disable" method="POST">
+                        <td><button type="submit">Submit</button></td>
+                        <td>
                             <div>
                                 <input type="radio" id="disabled" name="appType" value="disabled">
                                 <label for="Disabled">All Disabled Apps</label>
