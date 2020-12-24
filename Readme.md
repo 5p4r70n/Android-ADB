@@ -1,6 +1,10 @@
 # Android App Remover
 
 ## aim simplify removing apps from android phone via Adb shell
+
+## Required Packages
+- ppadb,https://pypi.org/project/pure-python-adb/,"pip install pure-python-adb"
+- flask, "pip install flask"
  
 
 ## how to use
