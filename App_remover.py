@@ -24,7 +24,7 @@ def home():                                             #definiton of "/" is hom
 def listAll():
 
     if request.method=='POST':
-        return render_template("Listall.html",list1= appList()[0],len=len(list1),head=appList()[1]) 
+        return render_template("Listall.html",list1=appList()[0],len=len(appList()[0]),head=appList()[1])
 
     else:
         return render_template ("ModuleList.html")
@@ -52,12 +52,14 @@ def screenCap():
 
 def appList():
     x=request.form['appType'] # app filter comes here
+    print(x) #debugging
     cmd={"all" : "pm list packages","user" : "pm list packages -3","system":"pm list packages -s","disabled":"pm list packages -d","enabled":"pm list packages -e"} #hard coded commands each one selected via appType coming from request
     list = (device.shell(cmd[x])).split() #packages are coming mixed with each other 
     list1=[]  #for saving splited packages 
     for i in range(0,len(list)):
         list[i]=list[i].split(':')      #this will split with : for removing "package:" from name
         list1.append(list[i][1])        # added to list array
+    # print(list1)
     return list1,x   
 
 
