@@ -10,7 +10,7 @@
 ## how to use
 
 - clone repo
-- Enable developer option in your device then Enable "USB debugging mode in your device"
+- Enable developer options in your device then Enable "USB debugging mode"
 - Connect device to computer
 - open terminal and "python3 App remover.py" inside cloned repository
 - click connect to device
